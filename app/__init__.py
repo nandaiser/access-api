@@ -3,13 +3,9 @@ from flask_restful import Api
 from flask_jwt_extended import JWTManager
 from app.models import db
 from app.jwt_keys import generate_jwt_key
-from dotenv import load_dotenv
-from pathlib import Path
 from datetime import timedelta
 
 def create_app():
-    load_dotenv(dotenv_path=Path("instance/secret.env"))
-    
     app = Flask(__name__)
     app.config.from_mapping(
         SQLALCHEMY_DATABASE_URI="sqlite:///database.db",
@@ -18,7 +14,7 @@ def create_app():
         JWT_ACCESS_TOKEN_EXPIRES=timedelta(minutes=15)
     )
     
-    # Initialize extensions
+    # initialize extensions
     db.init_app(app)
     api = Api(app)
     jwt = JWTManager(app)
@@ -27,8 +23,8 @@ def create_app():
     from app.auth.routes import auth_bp
     from app.user.routes import user_bp
     
-    app.register_blueprint(auth_bp)
-    app.register_blueprint(user_bp)
+    app.register_blueprint(auth_bp, url_prefix = "/auth")
+    app.register_blueprint(user_bp, url_prefix = "/user")
     
     # Create database tables
     with app.app_context():
