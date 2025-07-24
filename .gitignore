@@ -1,4 +1,27 @@
-.venv
-instance/
-*.db
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env/
+
+# Environment variables
+.env
 *.env
+
+# SQLite database
+*.sqlite3
+*.db
+
+# Flask cache and logs
+instance/
+*.log
+
+# VS Code settings
+.vscode/
+
+# MacOS and Linux system files
+.DS_Store
+Thumbs.db
