@@ -9,6 +9,10 @@ services_bp = Blueprint("services",__name__)
 @jwt_required()
 def services():
     current_user = get_jwt_identity()
+    service = Service.query.get(service_id)
+    
+    if service_id is None or service.owner_id != current_user :
+        return jsonify({"error": "Service not found or unauthorized"}), 404
     
     if request.method == "POST":
         data = request.get_json()
@@ -59,5 +63,5 @@ def services():
         db.session.delete(service)
         db.session.commit()
         
-        return jsonify({"message": f"service {service_id}, by {service.owner_id} has been deleted "})
+        return jsonify({"message": f"service '{service_id}' {service.service} , by {service.owner_id} has been deleted "})
         
