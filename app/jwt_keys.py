@@ -1,12 +1,9 @@
-
-# app/jwt_keys.py
 import os
 from pathlib import Path
 import string
 import secrets
 
 def generate_jwt_key(length=32):
-    """Generate a secure JWT key."""
     alphabet = string.ascii_letters + string.digits
     
     while True:
@@ -16,9 +13,9 @@ def generate_jwt_key(length=32):
             sum(c.isdigit() for c in key) >= 4):
             return key
 
-# Create the env file when module is imported
+# buat .env pas module di import
 if __name__ == "__main__":
-    # Ensure instance directory exists
+    # mastiin intance dir udh ada
     Path("instance").mkdir(exist_ok=True)
     
     key = generate_jwt_key(32)

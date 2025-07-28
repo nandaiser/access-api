@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 user_bp = Blueprint('user', __name__)
 
-@user_bp.route("/settings", methods=["PUT", "DELETE"])
+@user_bp.route("/settings", methods=["PUT", "DELETE"]) #user/settings
 @jwt_required()
 def user_config():
     data = request.get_json()
@@ -23,7 +23,7 @@ def user_config():
     if not listed_user:
         return jsonify({"error": "User not found"}), 404
     
-    if not check_password_hash(listed_user.password, user_pass):
+    if not check_password_hash(listed_user.password, user_pass): #check hashed password sama ga ama hash yang di db
         return jsonify({"error": "Wrong password"}), 401
     
     if request.method == "PUT":
@@ -33,16 +33,16 @@ def user_config():
         if not new_password:
             return jsonify({"error": "New password required"}), 400
         
-        listed_user.password = generate_password_hash(new_password)
+        listed_user.password = generate_password_hash(new_password) #generate password baru yang di hashed
         db.session.commit()
         return jsonify({"message": "Password updated successfully"}), 200
 
-    elif request.method == "DELETE":
+    elif request.method == "DELETE": #delete disini juga termasuk semua services dia, soalnya udh di relationship class Service sama User plus ada cascade 
         db.session.delete(listed_user)
         db.session.commit()
         return jsonify({"message": f"User '{user_id}' deleted"}), 200
 
-@user_bp.route("/profile", methods=["GET"])
+@user_bp.route("/profile", methods=["GET"]) #user/profile
 @jwt_required()
 def profile():
     current_user = get_jwt_identity()

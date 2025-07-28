@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 auth_bp = Blueprint('auth', __name__)
 
-@auth_bp.route("/login", methods=["POST"])
+@auth_bp.route("/login", methods=["POST"]) #auth/login
 def login():
     data = request.get_json()
     user_id = data.get("id", "").strip()
@@ -30,7 +30,7 @@ def login():
     
     return jsonify({"error": "user not in database, please sign up"}), 404
 
-@auth_bp.route("/signup", methods=["POST"])
+@auth_bp.route("/signup", methods=["POST"]) #auth/signup
 def signup():
     data = request.get_json()
     user_id = data.get("id","").strip()
