@@ -86,6 +86,15 @@ Ready to impress anyone who lands on your repo 🚀
 Muhammad Bagus Prasetyo
 GitHub - @nandaiser
 
+---
+
+## 🪪 License
+
+This project is licensed under the [MIT License](LICENSE).  
+You are free to use, modify, and distribute this code with proper attribution.
+
+
+
 
 
 
