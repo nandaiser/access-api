@@ -25,3 +25,7 @@ instance/
 # MacOS and Linux system files
 .DS_Store
 Thumbs.db
+
+__pycache__/
+*.py[cod]
+

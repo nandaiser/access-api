@@ -4,14 +4,14 @@ from flask_jwt_extended import JWTManager
 from app.models import db
 from app.jwt_keys import generate_jwt_key #local module buat generate JWT secret key
 from datetime import timedelta
-
+import os
 
 def create_app():
     app = Flask(__name__)
     app.config.from_mapping(
         SQLALCHEMY_DATABASE_URI="sqlite:///database.db",
         SQLALCHEMY_TRACK_MODIFICATIONS=False,
-        JWT_SECRET_KEY=generate_jwt_key(32),
+        JWT_SECRET_KEY=os.getenv("JWT_SECRET_KEY"),
         JWT_ACCESS_TOKEN_EXPIRES=timedelta(minutes=30)
     )
     
