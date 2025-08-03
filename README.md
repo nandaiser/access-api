@@ -48,11 +48,11 @@ access-api/
    git clone https://github.com/nandaiser/access-api.git
    cd access-api
    python -m venv venv
-venv\Scripts\activate       # Windows
-source venv/bin/activate    # macOS/Linux
-pip install -r requirements.txt
-python app/app.py
-The app will initialize a local SQLite database at instance/database.db.
+   venv\Scripts\activate       # Windows
+   source venv/bin/activate    # macOS/Linux\
+   pip install -r requirements.txt
+   The app will initialize a local SQLite database at instance/database.db.
+
 
 🧠 What I Learned
 How to build and structure Flask APIs
